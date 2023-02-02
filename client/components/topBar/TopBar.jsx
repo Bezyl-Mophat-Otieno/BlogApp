@@ -1,0 +1,67 @@
+import React from 'react'
+import './TopBar.css'
+import { Link } from "react-router-dom";
+import Login from '../modals/Login';
+import { useState } from 'react';
+import SearchBar from '../searchbar/SearchBar';
+function TopBar() {
+  const [show, setShow] = useState(false);
+ let user = true ;
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const logout = () => user=false ;
+
+  return (
+    <>
+    <div className='top'>
+      <div className="topLeft">
+        <i className="topIcon fab fa-facebook-square"></i>
+        <i className="topIcon fab fa-instagram-square"></i>
+        <i className="topIcon fab fa-pinterest-square"></i>
+        <i className="topIcon fab fa-twitter-square"></i>
+      </div>
+          <div className='topCenter'> 
+           <ul className='topList'>
+          <Link to='/' className='link' ><li className='topListItem'>HOME</li> </Link>
+          <Link  className='link'><li className='topListItem' onClick={handleShow} data-bs-toggle="modal" data-bs-target="#login-modal">ADMIN</li></Link>
+            <Link to='/write' className='link'> <li className='topListItem '> {  user && "WRITE"}</li></Link>
+            <Link to='/myblogs' className='link'> <li className='topListItem '> {  user && "MYBLOGS"}</li></Link>
+             <Link to='' className='link'>  {  user && <li className='topListItem' onClick={logout}>Logout</li> } </Link>
+             <Login handleClose={handleClose} handleShow={handleShow} show={show}/>
+
+           </ul>
+    </div>
+    <div className='topRight'> 
+
+    {
+      
+      user &&  <Link to='/settings'> <img
+              className="topImg"
+              src="https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              alt=""
+            /></Link>  
+
+    }
+         {
+
+          !user &&  
+          <ul className="topList">
+          <Link to='/register' className='link'><li className="topListItem">REGISTER</li></Link>
+          <Link to='/login' className='link'><li className="topListItem">LOGIN</li></Link>
+          </ul> 
+
+
+
+         }  
+
+            
+     <span>Kalasinga Abdulmalik</span>  
+     </div>
+ 
+    </div>
+    </>
+  )
+}
+
+export default TopBar
