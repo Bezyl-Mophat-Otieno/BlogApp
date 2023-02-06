@@ -4,20 +4,20 @@ const bcrypt = require ('bcrypt')
 
 
 //CREATE A POST 
-// /api/post
+//POST /api/post
 const createPost = asyncHandler(async (req,res)=>{
-  const  {tittle,language,desc,username,photo} = req.body
+  const  {tittle,language,category,desc,username,photo} = req.body
    const newPost = await Post.create({
-    tittle,language,desc,username,photo
+    tittle,language,category,desc,username,photo
    })
 
-   newPost ? res.status(200).json(`"You have successfully posted a block + ${newPost}"` ) :  res.status(401).json("Post creation failed ");
+   newPost ? res.status(200).json(newPost) :  res.status(401).json("Post creation failed ");
 
 })
 
 
 //UPDATE POST
-// /api/posts/update/:id
+//POST /api/posts/update/:id
 const updatePost =asyncHandler (async(req,res)=>{
     const post = await Post.findById(req.params.id)
     if (post){
@@ -44,7 +44,7 @@ const updatePost =asyncHandler (async(req,res)=>{
 })
 
 // DELETE POST
-// /api/posts/delete/:id
+//DELETE /api/posts/delete/:id
 const deletePost = asyncHandler( async (req , res )=>{
     const post = await Post.findById(req.params.id)
     if (post){
@@ -77,18 +77,18 @@ const getPost = asyncHandler(async(req,res)=>{
     }
 })
 //GET ALL POSTS
-// /api/post/?username
+// /api/post/?username='kalasinga'
+// /api/post/?category='music'
+
  const getAllPosts = asyncHandler(async(req,res)=>{
   const username = req.query.username
   const catName = req.query.category
   
   let posts;
   if(username){
-    posts = await Post.find({username})
+    posts = await Post.find({username , status:"approved"})
   } else if(catName){
-    posts = await Post.find({category:{
-        $in: [catName]
-    } })
+    posts = await Post.find({category,status:"approved"})
   } else{
      posts = await Post.find()
     }
@@ -112,8 +112,23 @@ const appPosts = asyncHandler(async(req , res )=>{
      }
 
 })
+// FETCH ALL MY POSTS 
+//GET api/posts/:username 
+const myPosts = asyncHandler(async(req , res)=>{
+const userName = req.params.username
+  const fetchedPosts =await Post.find({username:userName})
+  fetchedPosts ? res.json(fetchedPosts) : res.json(fetchedPosts)
+  
+});
 
+// VIEW AUTHORS 
+//GET api/posts/:authorname 
+const authorsPosts = asyncHandler(async(req , res)=>{
+const authorName = req.params.authorname
+const authorPosts =await Post.find({username:authorName,status:"approved"})
+authorPosts ? res.json (authorPosts) : res.json('Something went wrong ')
+});
 module.exports = {
-    getAllPosts , getPost , updatePost , deletePost , createPost ,appPosts
+    getAllPosts , getPost , updatePost , deletePost , createPost ,appPosts ,authorsPosts
 
 }

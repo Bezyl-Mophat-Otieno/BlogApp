@@ -25,7 +25,7 @@ photo:{
     default:""
 },
 category : {
-    type:Array,
+    type:String,
     required:true,
     ref:'Category'
 },

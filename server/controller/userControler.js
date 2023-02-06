@@ -27,7 +27,7 @@ const updateUser =asyncHandler (async(req,res)=>{
 
 })
 
-// DELETE USER 
+// DELETE USER | Delete My Account
 // /api/users/delete/:id
 const deleteUser = asyncHandler( async (req , res )=>{
 

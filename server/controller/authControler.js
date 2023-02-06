@@ -25,7 +25,7 @@ const register = (async(req,res)=>{
 })
 
 const login = asyncHandler( async (req , res )=>{
-    const { username  } = req.body
+    const { username , password  } = req.body
     const user = await User.findOne({username:username})
     if(user){
         const validateUser = await bcrypt.compare(password , user.password)

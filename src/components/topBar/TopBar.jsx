@@ -23,12 +23,9 @@ function TopBar() {
         </div>
         <div className='topCenter'>
           <ul className='topList'>
-            <Link to='/' className='link' ><li className='topListItem'>HOME</li> </Link>
-            <Link to='#' className='link'><li className='topListItem' onClick={handleShow} data-bs-toggle="modal"
-              data-bs-target="#login-modal">ADMIN</li></Link>
             <Link to='/write' className='link'> <li className='topListItem '> {user && "WRITE"}</li></Link>
             <Link to='/myblogs' className='link'> <li className='topListItem '> {user && "MYBLOGS"}</li></Link>
-            <Link to='#' className='link'>  {user && <li className='topListItem' onClick={logout}>Logout</li>} </Link>
+            <Link to='#' className='link'>  {user && <li className='topListItem' >Logout</li>} </Link>
             <Login handleClose={handleClose} handleShow={handleShow} show={show} />
 
           </ul>
@@ -44,6 +41,11 @@ function TopBar() {
             /></Link>
 
           }
+          <Link to='/settings'> <img
+            className="topImg"
+            src="https://app.logo.com/view/logo_011f3303-7bdf-4008-bfab-b8665a4799b2"
+            alt=""
+          /></Link>
           {
 
             !user &&
