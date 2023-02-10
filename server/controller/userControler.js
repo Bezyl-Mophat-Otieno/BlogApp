@@ -61,6 +61,13 @@ const getUser = asyncHandler(async(req,res)=>{
     }
 })
 
+//GET ALL USERS 
+//GET api/users
+const getAllUsers = asyncHandler(async(req,res)=>{
+  const users =   await User.find()
+  users ? res.json(users) : res.json('No registered student ')
+})
+
 module.exports = {
-    updateUser,deleteUser,getUser
+    updateUser,deleteUser,getUser , getAllUsers
 }

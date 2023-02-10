@@ -1,9 +1,9 @@
- import React from 'react'
- import './Header.css'
- 
- function Header() {
-   return (
-      <div className="header">
+import React from 'react'
+import './Header.css'
+
+function Header() {
+  return (
+    <div className="header">
       <div className="headerTitles">
         <span className="headerTitleSm">The</span>
         <span className="headerTitleLg">WHISPERER...</span>
@@ -14,8 +14,8 @@
         alt=""
       />
 
-</div>
-   )
- }
- 
- export default Header
+    </div>
+  )
+}
+
+export default Header

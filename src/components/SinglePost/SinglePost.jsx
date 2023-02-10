@@ -1,6 +1,10 @@
 import React from 'react'
 import './SinglePost.css'
+import Comment from '../writecomment/Comment'
+import { useLocation } from 'react-router';
 function SinglePost() {
+  const location = useLocation()
+  console.log(location)
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
@@ -20,7 +24,7 @@ function SinglePost() {
           <span>
             Author:
             <b className="singlePostAuthor">
-                Safak
+              Safak
             </b>
           </span>
           <span>1 day ago</span>
@@ -55,8 +59,11 @@ function SinglePost() {
           iusto impedit! Voluptatum necessitatibus eum beatae, adipisci voluptas
           a odit modi eos! Lorem, ipsum dolor sit amet consectetur.
         </p>
+        <div className='d-flex justify-content-end'><Comment /></div>
+
       </div>
     </div>
+
   );
 }
 

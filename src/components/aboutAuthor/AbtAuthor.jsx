@@ -48,7 +48,6 @@ function AbtAuthor() {
           <i className="sidebarIcon fab fa-twitter-square"></i>
         </div>
       </div>
-      <Comment/>
     </div>  )
 }
 

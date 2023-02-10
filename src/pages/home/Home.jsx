@@ -8,10 +8,10 @@ function Home() {
     <>
       <Header />
       <SearchBar />
-
-
-      <Posts />
-      <SideBar />
+      <div className='home'>
+        <Posts />
+        <SideBar />
+      </div>
     </>
   )
 }
